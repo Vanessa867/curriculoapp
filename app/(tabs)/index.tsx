@@ -1,75 +1,95 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// Importa a imagem local - ajuste o caminho conforme seu projeto
+const girlAvatar = require('@/assets/images/avatar.jpg');
 
-export default function HomeScreen() {
+export default function Home() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Image
+        source={girlAvatar}
+        style={styles.avatar}
+      />
+      <Text style={styles.name}>Vanessa Silva</Text>
+      <Text style={styles.title}>Desenvolvedora Frontend & Backend</Text>
+
+      <Text style={styles.bio}>
+        Olá! Sou apaixonada por tecnologia e desenvolvimento de software. Aqui você vai encontrar meu currículo, experiência, projetos e até um joguinho divertido!
+      </Text>
+
+      <View style={styles.infoBox}>
+        <Text style={styles.infoTitle}>📧 E-mail</Text>
+        <Text style={styles.infoText}>vanessa@email.com</Text>
+      </View>
+
+      <View style={styles.infoBox}>
+        <Text style={styles.infoTitle}>📍 Localização</Text>
+        <Text style={styles.infoText}>Recife, Brasil</Text>
+      </View>
+
+      <View style={styles.infoBox}>
+        <Text style={styles.infoTitle}>💼 Tecnologias</Text>
+        <Text style={styles.infoText}>React Native, Expo, Java, Spring Boot, PostgreSQL</Text>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    padding: 24,
+    paddingTop: 48,
+    backgroundColor: '#f0f6ff',
     alignItems: 'center',
-    gap: 8,
+    minHeight: '100%',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  avatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderWidth: 3,
+    borderColor: '#004a99',
+    marginBottom: 20,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  name: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#003366',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#0066cc',
+    marginBottom: 16,
+  },
+  bio: {
+    fontSize: 16,
+    color: '#004a99',
+    textAlign: 'center',
+    lineHeight: 24,
+    marginBottom: 30,
+    paddingHorizontal: 10,
+  },
+  infoBox: {
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 12,
+    width: '100%',
+    marginBottom: 15,
+    shadowColor: '#003366',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
+  },
+  infoTitle: {
+    fontSize: 14,
+    color: '#004a99',
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#003366',
   },
 });
